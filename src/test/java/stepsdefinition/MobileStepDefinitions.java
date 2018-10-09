@@ -21,4 +21,19 @@ public class MobileStepDefinitions {
         mobileSteps.open_dw700(platform);
     }
 
+    @And("^Deebot start to do clean job and check result on (.*)$")
+    public void deebot_start_to_do_clean_job_and_check_result(String platform) throws Throwable {
+        mobileSteps.doCleanJob(platform);
+    }
+
+    @And("^Deebot start to add modify delete clean schedule and check result on (.*)$")
+    public void deebot_start_to_add_modify_delete_clean_schedule_and_check_result(String platform) throws Throwable {
+        mobileSteps.addModifyDeleteSchedule(platform);
+    }
+
+    @And("^Deebot start to get work log and check result on (.*)$")
+    public void deebot_start_to_get_work_log_and_check_result(String platform) throws Throwable {
+        mobileSteps.jobLog(platform);
+    }
+
 }

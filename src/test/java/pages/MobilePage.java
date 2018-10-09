@@ -41,7 +41,69 @@ public class MobilePage {
     @iOSFindBy(xpath="")
     @AndroidFindBy(id="com.ecovacs.ecosphere:id/warm_tip")
     public MobileElement errorPanel;
-
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/auto")
+    public MobileElement autoCleanBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/singleroom")
+    public MobileElement singleroomCleanBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/border")
+    public MobileElement borderCleanBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/fixed")
+    public MobileElement fixedCleanBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/current_statue")
+    public MobileElement currentStatus;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/pause")
+    public MobileElement pauseBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/right")
+    public MobileElement settingsBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/appointment_time")
+    public MobileElement scheduleBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/Job_log")
+    public MobileElement jobLogBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/Consumable_timing")
+    public MobileElement consumableTimingBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/right")
+    public MobileElement addScheduleBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/repeatText")
+    public MobileElement repeatBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'每周日')]")
+    public MobileElement everySunday;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'每周一')]")
+    public MobileElement everyMonday;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/title_back")
+    public MobileElement repeatPageBackBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/right")
+    public MobileElement addScheduleSaveBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/replytime")
+    public MobileElement newScheduleTimePanel;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/delete_appointment_tv")
+    public MobileElement deleteSheduleBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="android:id/button1")
+    public MobileElement confirmDeleteBtn;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/usernone")
+    public MobileElement noSchedulePanel;
+    @iOSFindBy(xpath="")
+    @AndroidFindBy(id="com.ecovacs.ecosphere:id/logtext")
+    public MobileElement jobLogDetail;
 
 
     public MobilePage(AppiumDriver driver)

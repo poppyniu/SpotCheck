@@ -18,5 +18,6 @@ public class MessageUtility {
     public static String RollAbnormal = "error 109";
     public static String NoDustBox = "error 110";
     public static String BumpAbnormal = "error 111";
+    public static String CleanAuto = "clean auto";
 
 }

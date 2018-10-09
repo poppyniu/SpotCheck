@@ -48,7 +48,5 @@ public class SendUDPSteps {
         synchronized (thread) {
             thread.wait();
         }
-
     }
-
 }

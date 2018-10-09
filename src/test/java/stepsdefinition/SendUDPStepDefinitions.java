@@ -15,4 +15,10 @@ public class SendUDPStepDefinitions {
     public void request_deebot_send_udp_roll_brush_exception_to_mobile(String errorNum ) throws Throwable {
         requestUDPSteps.send_udp_message(errorNum);
     }
+
+    @And("^Ask deebot send (.*) clean udp message to mobile$")
+    public void ask_deebot_send_clean_msg_to_mobile(String type ) throws Throwable {
+        requestUDPSteps.send_clean_message(type);
+    }
+
 }
