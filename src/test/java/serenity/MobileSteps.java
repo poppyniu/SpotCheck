@@ -272,6 +272,36 @@ public class MobileSteps {
             } else
                 Assert.fail("Side brush exhausted error does not exist, test fail");
         }
+        else if (error.equals("107")) {
+            if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒到期")) {
+                System.out.println("Dust case heap exhausted error exist, test pass");
+            } else
+                Assert.fail("Dust case heap exhausted error does not exist, test fail");
+        }
+        else if (error.equals("108")) {
+            if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷异常")) {
+                System.out.println("Side brush abnormal error exist, test pass");
+            } else
+                Assert.fail("Side brush abnormal  error does not exist, test fail");
+        }
+        else if (error.equals("109")) {
+            if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("滚刷异常")) {
+                System.out.println("Roll brush abnormal error exist, test pass");
+            } else
+                Assert.fail("Roll brush abnormal error does not exist, test fail");
+        }
+        else if (error.equals("110")) {
+            if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒未安装")) {
+                System.out.println("No dust box error exist, test pass");
+            } else
+                Assert.fail("No dust box error does not exist, test fail");
+        }
+        else if (error.equals("111")) {
+            if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("撞板异常")) {
+                System.out.println("Bump abnormal error exist, test pass");
+            } else
+                Assert.fail("Bump abnormalerror does not exist, test fail");
+        }
     }
 
 
