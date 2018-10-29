@@ -37,8 +37,8 @@ public class Setup {
             capabilities.setCapability("automationName", "Appium");
             capabilities.setCapability("deviceName", "Nexus 6P");
             capabilities.setCapability("platformName", "Android");
-            capabilities.setCapability("platformVersion", "6.0.1");
-            capabilities.setCapability("udid", "84B7N15A20002666");
+            capabilities.setCapability("platformVersion", "6.0.0");
+            capabilities.setCapability("udid", "84B7N15A20002666");//MZROUGFIJZ8POBY9   84B7N15A20002666
             capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage", "com.ecovacs.ecosphere");
             //capabilities.setCapability("appActivity", "com.ecovacs.ecosphere.activity.IconTabActivity");

@@ -25,7 +25,10 @@ public class MobileStepDefinitions {
     public void deebot_start_to_do_clean_job_and_check_result(String platform) throws Throwable {
         mobileSteps.doCleanJob(platform);
     }
-
+    @And("^Deebot start to do error and check result on (.*)$")
+    public void deebot_start_to_do_error_and_check_result(String platform) throws Throwable {
+        mobileSteps.errorPageTranslate(platform);
+    }
     @And("^Deebot start to add modify delete clean schedule and check result on (.*)$")
     public void deebot_start_to_add_modify_delete_clean_schedule_and_check_result(String platform) throws Throwable {
         mobileSteps.addModifyDeleteSchedule(platform);
@@ -36,4 +39,8 @@ public class MobileStepDefinitions {
         mobileSteps.jobLog(platform);
     }
 
+    @And("^Deebot start to reset consumables and check result on (.*)$")
+    public void deebot_start_to_reset_consumables_and_check_result(String platform) throws Throwable {
+        mobileSteps.resetConsumables(platform);
+    }
 }

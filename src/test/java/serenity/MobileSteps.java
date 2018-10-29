@@ -1,17 +1,20 @@
 package serenity;
 
+import constants.JsonUtility;
 import constants.Setup;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import net.thucydides.core.annotations.Step;
+import org.apache.http.entity.StringEntity;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import pages.CommonPage;
 import pages.MobilePage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,23 +80,22 @@ public class MobileSteps {
         if (platform.equals("ios")) {
             CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
         } else {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("com.ecovacs.ecosphere:id/icon"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("com.ecovacs.ecosphere:id/titleContent"), 60, platform);
             Thread.sleep(5000);
         }
-        mobilePage.dw700Icon.click();
-        if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
-        } else {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("com.ecovacs.ecosphere:id/low_electricity"), 60, platform);
-            System.out.println("Open deebot main page succeed, test pass");
-            Thread.sleep(5000);
-        }
+        mobilePage.dw700Icon.get(0).click();
+        System.out.println("Open deebot main page succeed, test pass");
+
     }
 
     @Step
     public void doCleanJob(String platform) throws Exception {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
-        //spot check for start auto clean and pause auto clean
+        if (platform.equals("ios")) {
+            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+        } else {
+            CommonPage.waitMobileElementVisible(appiumDriver, ("com.ecovacs.ecosphere:id/auto"), 60, platform);
+        }
         mobilePage.autoCleanBtn.click();
         if (mobilePage.currentStatus.getText().equals("自动清扫")) {
             System.out.println("Start auto clean succeed, test pass");
@@ -145,6 +147,33 @@ public class MobileSteps {
         } else
             Assert.fail("Pause fixed clean get error, test fail");
         Thread.sleep(2000);
+        //spot check for start fixed clean and pause back clean
+        mobilePage.backCleanBtn.click();
+        if (mobilePage.currentStatus.getText().equals("回充中")) {
+            System.out.println("Start back clean succeed, test pass");
+        } else
+            Assert.fail("Start back clean get error, test fail");
+        mobilePage.singleroomCleanBtn.click();
+        mobilePage.topCleanBtn.click();
+        if (mobilePage.currentStatus.getText().equals("手动清扫")) {
+            System.out.println("Start top clean succeed, test pass");
+        } else
+            Assert.fail("Start top clean get error, test fail");
+        mobilePage.leftCleanBtn.click();
+        if (mobilePage.currentStatus.getText().equals("待机")) {
+            System.out.println("Start left clean succeed, test pass");
+        } else
+            Assert.fail("Start left clean get error, test fail");
+        mobilePage.rightCleanBtn.click();
+        if (mobilePage.currentStatus.getText().equals("待机")) {
+            System.out.println("Start right clean succeed, test pass");
+        } else
+            Assert.fail("Start right clean get error, test fail");
+        mobilePage.bottomCleanBtn.click();
+        if (mobilePage.currentStatus.getText().equals("待机")) {
+            System.out.println("Start bottom clean succeed, test pass");
+        } else
+            Assert.fail("Start bottom clean get error, test fail");
     }
 
 
@@ -205,7 +234,7 @@ public class MobileSteps {
         Thread.sleep(2000);
         mobilePage.addScheduleSaveBtn.click();
         Thread.sleep(3000);
-        if (elementExist(mobilePage.newScheduleTimePanel) && mobilePage.newScheduleTimePanel.getText().contains("周一")) {
+        if (elementExist(mobilePage.newScheduleTimePanel) && mobilePage.newScheduleTimePanel.getText().contains("周日")) {
             System.out.println("Edit new clean schedule succeed, test pass");
         } else
             Assert.fail("Edit new clean schedule get error, test fail");
@@ -215,7 +244,7 @@ public class MobileSteps {
         mobilePage.deleteSheduleBtn.click();
         Thread.sleep(2000);
         mobilePage.confirmDeleteBtn.click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         if (elementExist(mobilePage.noSchedulePanel) && mobilePage.noSchedulePanel.getText().equals("当前无预约")) {
             System.out.println("Delete clean schedule succeed, test pass");
         } else
@@ -227,10 +256,31 @@ public class MobileSteps {
     public void jobLog(String platform) throws Exception {
         mobilePage.jobLogBtn.click();
         Thread.sleep(2000);
-        if (elementExist(mobilePage.jobLogDetail) && mobilePage.jobLogDetail.getText().contains("主机悬空")) {
+        if (elementExist(mobilePage.jobLogDetail) && mobilePage.jobLogDetail.getText().contains("开始清扫")) {
             System.out.println("Get job log detail info succeed, test pass");
         } else
             Assert.fail("Get job log get error, test fail");
+        mobilePage.repeatPageBackBtn.click();
+    }
+    @Step
+    public void resetConsumables(String platform) throws Exception {
+        mobilePage.consumableTimingBtn.click();
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.resetConsumables) && mobilePage.resetConsumables.getText().contains("复位耗材")) {
+            System.out.println("Get reset consumables detail info succeed, test pass");
+        } else
+            Assert.fail("Get reset consumables get error, test fail");
+        mobilePage.resetConsumables.click();
+        mobilePage.resetButton1.click();
+
+        mobilePage.hepaConsumables.click();
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.resetConsumables) && mobilePage.resetConsumables.getText().contains("复位耗材")) {
+            System.out.println("Get reset two consumables detail info succeed, test pass");
+        } else
+            Assert.fail("Get reset consumables get error, test fail");
+        mobilePage.resetConsumables.click();
+        mobilePage.resetButton1.click();
         mobilePage.repeatPageBackBtn.click();
     }
 
@@ -239,7 +289,94 @@ public class MobileSteps {
         Thread.sleep(5000);
         checkErrorExist(error, platform);
     }
-
+    @Step
+    public void errorPageTranslate(String platform) throws Exception {
+        //send 102 error request to DW700 "{\"name\":\""+name+"\",\"age\":\""+age+"\"}"
+        StringEntity inputBody1 = new StringEntity("{\"errno\":\"101\",\"error\":\"BatteryLow\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody1);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("电量低")) {
+            System.out.println("Battery low error exist, test pass");
+        } else
+            Assert.fail("Battery low error does not exist, test fail");
+        StringEntity inputBody2 = new StringEntity("{\"errno\":\"102\",\"error\":\"HostHang\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody2);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("主机悬空")) {
+            System.out.println("Host hang error exist, test pass");
+        } else
+            Assert.fail("Host hang error does not exist, test fail");
+        StringEntity inputBody3 = new StringEntity("{\"errno\":\"103\",\"error\":\"WheelAbnormal\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody3);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("驱动轮异常")) {
+            System.out.println("Wheel abnormal error exist, test pass");
+        } else
+            Assert.fail("Wheel abnormal error does not exist, test fail");
+        StringEntity inputBody4 = new StringEntity("{\"errno\":\"104\",\"error\":\"DownSensorAbnormal\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody4);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("下视组件异常")) {
+            System.out.println("Down sensor abnormal error exist, test pass");
+        } else
+            Assert.fail("Down sensor abnormal error does not exist, test fail");
+        StringEntity inputBody5 = new StringEntity("{\"errno\":\"105\",\"error\":\"Stuck\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody5);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("卡住")) {
+            System.out.println("Deebot stuck error exist, test pass");
+        } else
+            Assert.fail("Deebot stuck error does not exist, test fail");
+        StringEntity inputBody6 = new StringEntity("{\"errno\":\"106\",\"error\":\"SideBrushExhausted\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody6);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷到期")) {
+            System.out.println("Side brush exhausted error exist, test pass");
+        } else
+            Assert.fail("Side brush exhausted error does not exist, test fail");
+        StringEntity inputBody7 = new StringEntity("{\"errno\":\"107\",\"error\":\"DustCaseHeapExhausted\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody7);
+        Thread.sleep(1000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒到期")) {
+            System.out.println("Dust case heap exhausted error exist, test pass");
+        } else
+            Assert.fail("Dust case heap exhausted error does not exist, test fail");
+        StringEntity inputBody8 = new StringEntity("{\"errno\":\"108\",\"error\":\"SideAbnormal\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody8);
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷异常")) {
+            System.out.println("Side brush abnormal error exist, test pass");
+        } else
+            Assert.fail("Side brush abnormal  error does not exist, test fail");
+        StringEntity inputBody9 = new StringEntity("{\"errno\":\"109\",\"error\":\"RollAbnormal\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody9);
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("滚刷异常")) {
+            System.out.println("Roll brush abnormal error exist, test pass");
+        } else
+            Assert.fail("Roll brush abnormal error does not exist, test fail");
+        StringEntity inputBody10 = new StringEntity("{\"errno\":\"110\",\"error\":\"NoDustBox\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody10);
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒未安装")) {
+            System.out.println("No dust box error exist, test pass");
+        } else
+            Assert.fail("No dust box error does not exist, test fail");
+        StringEntity inputBody11 = new StringEntity("{\"errno\":\"111\",\"error\":\"BumpAbnormal\"}");
+        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody11);
+        Thread.sleep(2000);
+        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("撞板异常")) {
+            System.out.println("Bump abnormal error exist, test pass");
+        } else
+            Assert.fail("Bump abnormalerror does not exist, test fail");
+//        StringEntity inputBody12 = new StringEntity("{\"errno\":\"100\",\"error\":\"NoError\"}");
+//        JsonUtility.postJsonContent("http://localhost:3000/error", inputBody12);
+//        Thread.sleep(2000);
+//        if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals(" ")) {
+//            System.out.println("All error exist, test pass");
+//        } else
+//            Assert.fail("All  does not exist, test fail");
+    }
     public void checkErrorExist(String error, String platform) throws Exception {
         if (error.equals("101")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("电量低")) {
