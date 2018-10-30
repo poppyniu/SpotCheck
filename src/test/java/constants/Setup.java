@@ -3,6 +3,7 @@ package constants;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import org.apache.http.entity.StringEntity;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
@@ -13,6 +14,16 @@ import java.net.URL;
  */
 public class Setup {
     public static AppiumDriver appiumDriver;
+
+    public void startSimulator(String type) throws Exception {
+        if (type.equals("dr930")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DR930);
+            JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+        } else if (type.equals("dw700")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DW700);
+            JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+        }
+    }
 
     public AppiumDriver setUp(String platform) throws Exception {
         if (platform.equals("ios")) {
@@ -55,4 +66,9 @@ public class Setup {
     public void tearDown() throws Exception {
         appiumDriver.quit();
     }
+
+    public void SimulatorTearDown() throws Exception {
+        JsonUtility.sendPost("http://localhost:3000/reset");
+    }
+
 }

@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 
 public class JsonUtility {
@@ -40,7 +41,7 @@ public class JsonUtility {
         return "";
     }
 
-    public static String getJsonContent(String urlStr,String idToken) {
+    public static String getJsonContent(String urlStr, String idToken) {
         try {
             // 获取HttpURLConnection连接对象
             URL url = new URL(urlStr);
@@ -51,7 +52,7 @@ public class JsonUtility {
             httpConn.setDoInput(true);
             httpConn.setRequestMethod("GET");
             httpConn.setRequestProperty("Content-Type", "application/json");
-            httpConn.setRequestProperty("Authorization","Bearer "+idToken);
+            httpConn.setRequestProperty("Authorization", "Bearer " + idToken);
             // 获取相应码
             int respCode = httpConn.getResponseCode();
             if (respCode == 200) {
@@ -96,7 +97,26 @@ public class JsonUtility {
             inputBody.setContentType("application/json");
             postRequest.setEntity(inputBody);
             HttpResponse response = httpClient.execute(postRequest);
-            if (response.getStatusLine().getStatusCode() != 200 & response.getStatusLine().getStatusCode() != 406  & response.getStatusLine().getStatusCode() != 401) {
+            if (response.getStatusLine().getStatusCode() != 200 & response.getStatusLine().getStatusCode() != 406 & response.getStatusLine().getStatusCode() != 401) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatusLine().getStatusCode());
+            }
+            output = EntityUtils.toString(response.getEntity());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return output;
+    }
+
+    public static String sendPost(String urlStr) {
+        String output = null;
+        try {
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpPost postRequest = new HttpPost(urlStr);
+            HttpResponse response = httpClient.execute(postRequest);
+            if (response.getStatusLine().getStatusCode() != 200 & response.getStatusLine().getStatusCode() != 406 & response.getStatusLine().getStatusCode() != 401) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatusLine().getStatusCode());
             }
@@ -117,11 +137,11 @@ public class JsonUtility {
                     urlStr);
             inputBody.setContentType("application/json");
             postRequest.setEntity(inputBody);
-            postRequest.setHeader("Authorization","Bearer "+idToken);
+            postRequest.setHeader("Authorization", "Bearer " + idToken);
             HttpResponse response = httpClient.execute(postRequest);
             output = EntityUtils.toString(response.getEntity());
             System.out.println(output);
-            if (response.getStatusLine().getStatusCode() != 200 & response.getStatusLine().getStatusCode() != 406  & response.getStatusLine().getStatusCode() != 401) {
+            if (response.getStatusLine().getStatusCode() != 200 & response.getStatusLine().getStatusCode() != 406 & response.getStatusLine().getStatusCode() != 401) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatusLine().getStatusCode());
             }
@@ -186,7 +206,7 @@ public class JsonUtility {
         return output;
     }
 
-    public static String putJsonContent(String urlStr, StringEntity inputBody,String idToken) {
+    public static String putJsonContent(String urlStr, StringEntity inputBody, String idToken) {
         String output = null;
         try {
             DefaultHttpClient httpClient = new DefaultHttpClient();
@@ -194,7 +214,7 @@ public class JsonUtility {
                     urlStr);
             inputBody.setContentType("application/json");
             putRequest.setEntity(inputBody);
-            putRequest.setHeader("Authorization","Bearer "+idToken);
+            putRequest.setHeader("Authorization", "Bearer " + idToken);
             HttpResponse response = httpClient.execute(putRequest);
             if (response.getStatusLine().getStatusCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "

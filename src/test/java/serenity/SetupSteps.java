@@ -10,6 +10,11 @@ public class SetupSteps {
     Setup setUp=new Setup();
 
     @Step
+    public void startSimulator(String type) throws Exception {
+        setUp.startSimulator(type);
+    }
+
+    @Step
     public void setUp(String platform) throws Exception {
         setUp.setUp(platform);
     }
@@ -18,4 +23,10 @@ public class SetupSteps {
     public void tearDown( ) throws Exception {
         setUp.tearDown();
     }
+
+    @Step
+    public void SimulatorTearDown( ) throws Exception {
+        setUp.SimulatorTearDown();
+    }
+
 }

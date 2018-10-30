@@ -1,15 +1,26 @@
 package stepsdefinition;
 
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import serenity.MobileSteps;
+import serenity.MobileStepsDW700;
 
 /**
  * Created by poppy zhang on 2018/8/13.
  */
-public class MobileStepDefinitions {
+public class MobileStepDefinitionsDW700 {
     @Steps
-    MobileSteps mobileSteps=new MobileSteps();
+    MobileStepsDW700 mobileSteps=new MobileStepsDW700();
+
+    @When("^Choose (.*) as login country on (.*)$")
+    public void choose_america_as_login_country(String country,String platform) throws Throwable {
+        mobileSteps.chooseCountry(country,platform);
+    }
+
+    @And("^Input ([^\"]*) and ([^\"]*) and click login button$")
+    public void input_email_password_and_click_login_button(String email, String password) throws Throwable {
+        mobileSteps.global_login(email,password);
+    }
 
     @And("^Check (.*) appears on (.*) mobile$")
     public void check_error_appears_on_mobile(String error,String platform) throws Throwable {
@@ -43,4 +54,5 @@ public class MobileStepDefinitions {
     public void deebot_start_to_reset_consumables_and_check_result(String platform) throws Throwable {
         mobileSteps.resetConsumables(platform);
     }
+
 }

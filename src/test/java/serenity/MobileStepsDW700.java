@@ -12,9 +12,9 @@ import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import pages.CommonPage;
-import pages.MobilePage;
+import pages.LoginPage;
+import pages.MobilePageDW700;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,15 +23,15 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 /**
  * Created by poppy zhang on 2018/8/13.
  */
-public class MobileSteps {
+public class MobileStepsDW700 {
     AppiumDriver appiumDriver = Setup.appiumDriver;
-    MobilePage mobilePage = new MobilePage(appiumDriver);
-
+    MobilePageDW700 mobilePage = new MobilePageDW700(appiumDriver);
+    LoginPage loginPage = new LoginPage(appiumDriver);
 
     @Step
     public void chooseCountry(String country, String platform) throws Exception {
         //initial area page
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
         Thread.sleep(9000);
         if (country != null && appiumDriver != null && platform.equals("android")) {
             if (elementExist(mobilePage.moreCountryIcon)) {
@@ -59,11 +59,32 @@ public class MobileSteps {
     }
 
     @Step
+    public void global_login(String email, String password) throws Exception {
+        //initial login page
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), LoginPage.class);
+        if (loginPage.loginPageCurrentCountry.getText().contains("中国")) {
+            loginPage.switchToPwdLoginBtn.click();
+            Thread.sleep(1000);
+        }
+        if (email != null && password != null) {
+            loginPage.emailAccountTextbox.clear();
+            loginPage.emailAccountTextbox.sendKeys(email);
+            loginPage.passwordTextbox.clear();
+            loginPage.passwordTextbox.sendKeys(password);
+            if (loginPage.iphoneFinishBtn.isDisplayed()) {
+                loginPage.iphoneFinishBtn.click();
+            } else {
+                loginPage.loginButton.click();
+            }
+        }
+    }
+
+    @Step
     public void different_country_login_to_mobile(String name, String password, String country) throws Exception {
         if (country.equals("中国")) {
             mobilePage.chinaPwdLoginBtn.click();
         }
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
         if (name != null && password != null) {
             mobilePage.emailAccountTextbox.clear();
             mobilePage.emailAccountTextbox.sendKeys(name);
@@ -73,10 +94,23 @@ public class MobileSteps {
         }
     }
 
+    @Step
+    public void getIntoCleanPage(String platform) throws Exception {
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
+        if (platform.equals("ios")) {
+            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+        } else {
+            CommonPage.waitMobileElementVisible(appiumDriver, ("com.ecovacs.ecosphere:id/titleContent"), 60, platform);
+            Thread.sleep(5000);
+        }
+        mobilePage.dw700Icon.get(0).click();
+        System.out.println("Open deebot main page succeed, test pass");
+
+    }
 
     @Step
     public void open_dw700(String platform) throws Exception {
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
         if (platform.equals("ios")) {
             CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
         } else {
@@ -90,7 +124,7 @@ public class MobileSteps {
 
     @Step
     public void doCleanJob(String platform) throws Exception {
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
         if (platform.equals("ios")) {
             CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
         } else {
@@ -179,7 +213,7 @@ public class MobileSteps {
 
     @Step
     public void addModifyDeleteSchedule(String platform) throws Exception {
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePage.class);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
         mobilePage.settingsBtn.click();
         if (platform.equals("ios")) {
             CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
@@ -262,6 +296,7 @@ public class MobileSteps {
             Assert.fail("Get job log get error, test fail");
         mobilePage.repeatPageBackBtn.click();
     }
+
     @Step
     public void resetConsumables(String platform) throws Exception {
         mobilePage.consumableTimingBtn.click();
@@ -289,6 +324,7 @@ public class MobileSteps {
         Thread.sleep(5000);
         checkErrorExist(error, platform);
     }
+
     @Step
     public void errorPageTranslate(String platform) throws Exception {
         //send 102 error request to DW700 "{\"name\":\""+name+"\",\"age\":\""+age+"\"}"
@@ -377,6 +413,7 @@ public class MobileSteps {
 //        } else
 //            Assert.fail("All  does not exist, test fail");
     }
+
     public void checkErrorExist(String error, String platform) throws Exception {
         if (error.equals("101")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("电量低")) {
@@ -408,32 +445,27 @@ public class MobileSteps {
                 System.out.println("Side brush exhausted error exist, test pass");
             } else
                 Assert.fail("Side brush exhausted error does not exist, test fail");
-        }
-        else if (error.equals("107")) {
+        } else if (error.equals("107")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒到期")) {
                 System.out.println("Dust case heap exhausted error exist, test pass");
             } else
                 Assert.fail("Dust case heap exhausted error does not exist, test fail");
-        }
-        else if (error.equals("108")) {
+        } else if (error.equals("108")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷异常")) {
                 System.out.println("Side brush abnormal error exist, test pass");
             } else
                 Assert.fail("Side brush abnormal  error does not exist, test fail");
-        }
-        else if (error.equals("109")) {
+        } else if (error.equals("109")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("滚刷异常")) {
                 System.out.println("Roll brush abnormal error exist, test pass");
             } else
                 Assert.fail("Roll brush abnormal error does not exist, test fail");
-        }
-        else if (error.equals("110")) {
+        } else if (error.equals("110")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒未安装")) {
                 System.out.println("No dust box error exist, test pass");
             } else
                 Assert.fail("No dust box error does not exist, test fail");
-        }
-        else if (error.equals("111")) {
+        } else if (error.equals("111")) {
             if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("撞板异常")) {
                 System.out.println("Bump abnormal error exist, test pass");
             } else
