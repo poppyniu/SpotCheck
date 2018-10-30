@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by poppy zhang on 2018/9/13.
  */
-public class MobilePage {
+public class MobilePageDW700 {
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
     @AndroidFindBy(id = "com.eco.global.app:id/tv_country_arrow")
     public MobileElement moreCountryIcon;
@@ -143,7 +143,7 @@ public class MobilePage {
     @AndroidFindBy(id = "com.ecovacs.ecosphere:id/warm_tip")
     public MobileElement warm_tip;
 
-    public MobilePage(AppiumDriver driver) {
+    public MobilePageDW700(AppiumDriver driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
