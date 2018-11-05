@@ -1,13 +1,14 @@
 Feature: Spot check automation for DR930
 
-  @SpotCheck
+  @930
   Scenario Outline: Spot check automation for DR930
     Given Start simulator for deebot <type>
     And Set up testing environment on <platform> for deebot <type>
-    And Choose <country> as login country on <platform>
-    And Input <name> and <password> and click login button
+#    And Choose <country> as login country on <platform>
+#    And Input <name> and <password> and click login button
     And Open app and click into deebot clean page on <platform>
     And Test clean module and check result on <platform>
+    And Test charge module and check result on <platform>
     And Test error module and check result on <platform>
     And Test clean power module and check result on <platform>
     And Test water amount module and check result on <platform>
@@ -26,5 +27,5 @@ Feature: Spot check automation for DR930
     Then Tear down for simulator
     Examples:
       | platform | country | name        | password | type  |
-      | android  | 中国      | 13402516615 | 111111 | dr930 |
+#      | android  | 中国      | 13402516615 | 111111 | dr930 |
       | ios  | 中国      | 13402516615 | 111111 | dr930 |

@@ -13,6 +13,7 @@ import java.util.List;
  * Created by poppy zhang on 2018/9/13.
  */
 public class MobilePageDR930 {
+    //clean page element
     @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/*")
     @AndroidFindBy(id="com.eco.global.app:id/robot_name")
     public List<MobileElement> DR930Icon ;
@@ -22,6 +23,44 @@ public class MobilePageDR930 {
     @iOSFindBy(xpath ="//*[@name=\"com global more\"]")
     @AndroidFindBy(id="com.eco.global.app:id/top_status_more")
     public MobileElement cleanPageMoreBtn ;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[6]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_clean")
+    public MobileElement cleanPageCleanBtn ;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_clean")
+    public MobileElement cleanPageCleanBtn1 ;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/deebot_statues")
+    public MobileElement currentStatus ;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_clean_pause")
+    public  MobileElement pauseCleanBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_clean_stop_right")
+    public  MobileElement endCleanImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeSheet[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+    @AndroidFindBy(id="//poppy")
+    public  MobileElement returnToChargeSeatBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeSheet[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+    @AndroidFindBy(id="//poppy")
+    public  MobileElement finishCurrentWorkBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="//poppy")
+    public  MobileElement alertFinishCleanBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/rd_clean_type")
+    public  MobileElement cleanPageLog;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_gocharge")
+    public  MobileElement chargeImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_gocharge_stop")
+    public  MobileElement stopChargeImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="//poppytest")
+    public  MobileElement alertStopChargeBtn;
+
+
 
     //dr930 error page related element
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
@@ -84,7 +123,6 @@ public class MobilePageDR930 {
     @AndroidFindBy(xpath = "//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]/android.support.v7.widget.RecyclerView[1]/android.widget.RelativeLayout[10]/android.widget.TextView[1]")
     public MobileElement lookForDeboot;
     @iOSFindBy(xpath = "//*[@name=\"comnav back black\"]")
-    //@iOSFindBy(xpath = "///XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[1]")
     @AndroidFindBy(id = "com.eco.global.app:id/title_back")
     public MobileElement backBtnOnMorePage;
     //more page value field element
@@ -175,15 +213,16 @@ public class MobilePageDR930 {
     @AndroidFindBy(id = "com.eco.global.app:id/lly")
     public List<MobileElement> scheduleList;
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "//poppy")
     public MobileElement delBtn;
     @iOSFindBy(xpath = "//XCUIElementTypeStaticText[2]")
     @AndroidFindBy(id = "com.eco.global.app:id/tv_week")
     public List<MobileElement> everyWeekLabel;
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]")
-    @AndroidFindBy(id = "")
+    @AndroidFindBy(id = "//poppy")
     public MobileElement firstScheduleWeekLabel;
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]")
+    @AndroidFindBy(id = "//poppy")
     public MobileElement firstSchedule;
 
     //add new schedule page element

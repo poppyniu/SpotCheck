@@ -16,9 +16,14 @@ public class MobileStepDefinitionsDR930 {
         mobileStepsDR930.getIntoCleanPage(platform);
     }
 
-    @And("^Test clean module and check result on android$")
+    @And("^Test clean module and check result on (.*)$")
     public void test_clean_module_and_check_result_on_android(String platform) throws Throwable {
+        mobileStepsDR930.testCleanModule(platform);
+    }
 
+    @And("^Test charge module and check result on (.*)$")
+    public void test_charge_module_and_check_result_on_android(String platform) throws Throwable {
+        mobileStepsDR930.testChargeModule(platform);
     }
 
     @And("^Test error module and check result on (.*)$")

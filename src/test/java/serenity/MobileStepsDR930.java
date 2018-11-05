@@ -47,6 +47,85 @@ public class MobileStepsDR930 {
     }
 
     @Step
+    public void testCleanModule(String platform) throws Exception {
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
+        mobilePageDR930.cleanPageCleanBtn.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.currentStatus.getText().equals("清扫")){
+            System.out.println("Deebot do clean job succeed, test pass!");
+        }
+        else
+            System.out.println("Deebot do clean job get error, test fail!");
+        //pause clean
+        mobilePageDR930.pauseCleanBtn.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.currentStatus.getText().equals("暂停")){
+            System.out.println("Pause clean succeed, test pass!");
+        }
+        else
+            System.out.println("Pause clean get error, test fail!");
+        //restart clean
+        mobilePageDR930.cleanPageCleanBtn1.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.currentStatus.getText().equals("清扫")){
+            System.out.println("Restart clean succeed, test pass!");
+        }
+        else
+            System.out.println("Restart clean get error, test fail!");
+        //end clean job
+        mobilePageDR930.endCleanImgBtn.click();
+        Thread.sleep(1000);
+        mobilePageDR930.finishCurrentWorkBtn.click();
+        Thread.sleep(1000);
+        mobilePageDR930.alertFinishCleanBtn.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.cleanPageLog.getText().equals("自动清扫")){
+            System.out.println("Clean module works well, test pass!");
+        }
+        else
+            System.out.println("Clean module does not work well, test fail!");
+        //after clean job reset map
+        mobilePageDR930.cleanPageMoreBtn.click();
+        Thread.sleep(3000);
+        mobilePageDR930.resetMapOnMorePageFor930.click();
+        Thread.sleep(2000);
+        mobilePageDR930.resetMapResetBtnFor930.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.cleanPageMoreBtn.isDisplayed()){
+            System.out.println("Reset map and go back to clean page succeed, test pass!");
+        }
+        else
+            System.out.println("Reset map get error, test fail!");
+
+
+    }
+
+    @Step
+    public void testChargeModule(String platform) throws Exception {
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDW700.class);
+        mobilePageDR930.chargeImgBtn.click();
+        Thread.sleep(2000);
+        if(mobilePageDR930.currentStatus.getText().equals("回充")){
+            System.out.println("Start charge succeed, test pass!");
+        }
+        else
+            System.out.println("Start charge get error, test fail!");
+        mobilePageDR930.stopChargeImgBtn.click();
+        Thread.sleep(2000);
+        if(platform.equals("ios")) {
+            mobilePageDR930.alertStopChargeBtn.click();
+        }
+        Thread.sleep(2000);
+        if(mobilePageDR930.cleanPageMoreBtn.isDisplayed()){
+            System.out.println("Stop charge succeed, test pass!");
+        }
+        else
+            System.out.println("Stop charge get error, test fail!");
+
+    }
+
+
+    @Step
     public void testErrorModule(String platform) throws Exception {
         if (platform.equals("ios")) {
             CommonPage.waitForVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]"), 60, platform);
