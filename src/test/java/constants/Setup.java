@@ -22,6 +22,9 @@ public class Setup {
         } else if (type.equals("dw700")) {
             StringEntity inputBody = new StringEntity(DeviceUtility.DW700);
             JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+        }else if (type.equals("dn55")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DN55);
+            JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
         }
     }
 
@@ -43,21 +46,22 @@ public class Setup {
         } else {
             File classpathRoot = new File(System.getProperty("user.dir"));
             File appDir = new File(classpathRoot, "file");
-            File app = new File(appDir, "dw700.apk");
+            File app = new File(appDir, "dn55.apk");
             DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("automationName", "Appium");
-            capabilities.setCapability("deviceName", "Nexus 6P");
+            capabilities.setCapability("automationName", "appium");//UiAutomator2 appium
+            capabilities.setCapability("deviceName", "Nexus 6P");//Nexus 6P Letv X500
             capabilities.setCapability("platformName", "Android");
-            capabilities.setCapability("platformVersion", "6.0.0");
+            capabilities.setCapability("platformVersion", "6.0.0");//5.0.2 6.0.0
             capabilities.setCapability("udid", "84B7N15A20002666");//MZROUGFIJZ8POBY9   84B7N15A20002666
             capabilities.setCapability("app", app.getAbsolutePath());
-            //capabilities.setCapability("appPackage", "com.ecovacs.ecosphere");
-            //capabilities.setCapability("appActivity", "com.ecovacs.ecosphere.activity.IconTabActivity");
+//            capabilities.setCapability("appPackage", "com.ecovacs.ecosphere");
+//            capabilities.setCapability("appActivity", "com.ecovacs.ecosphere.activity.IconTabActivity");
             capabilities.setCapability("unicodeKeyboard", "True");
             capabilities.setCapability("resetKeyboard", "True");
             capabilities.setCapability("noSign", "True");
             capabilities.setCapability("noReset", "True");
             //capabilities.setCapability("newCommandTimeout", 600);
+//            capabilities.setCapability("appWaitActivity", "com.ecovacs.ecosphere.activity.IconTabActivity,");
             appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
             return appiumDriver;
         }

@@ -1,8 +1,9 @@
 Feature: Spot check automation for dw700
 
-  @SpotCheck
+  @SpotCheckDW700
   Scenario Outline: Spot check automation for dw700
-    Given Set up testing environment on <platform>
+    Given Start simulator for deebot <type>
+    And Set up testing environment on <platform>
     And Open app and click into dw700 page on <platform>
 #    And Choose <country> as login country on <platform>
 #    And Input <name> and <password> and click login button in <country>
@@ -13,5 +14,5 @@ Feature: Spot check automation for dw700
     And Deebot start to reset consumables and check result on <platform>
     And Tear down for mobile driver
     Examples:
-      | platform | country | name        | password |
-      | android  | 中国      | 15259562596 | zxw15259562596   |
+      | platform | country | name        | password       | type  |
+      | android  | 中国      | 15259562596 | zxw15259562596 | dw700|

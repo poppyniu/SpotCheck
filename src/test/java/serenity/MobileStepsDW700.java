@@ -328,77 +328,77 @@ public class MobileStepsDW700 {
     @Step
     public void errorPageTranslate(String platform) throws Exception {
         //send 102 error request to DW700 "{\"name\":\""+name+"\",\"age\":\""+age+"\"}"
-        StringEntity inputBody1 = new StringEntity("{\"errno\":\"101\",\"error\":\"BatteryLow\"}");
+        StringEntity inputBody1 = new StringEntity("{\"errorNo\":\"101\",\"errorName\":\"BatteryLow\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody1);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("电量低")) {
             System.out.println("Battery low error exist, test pass");
         } else
             Assert.fail("Battery low error does not exist, test fail");
-        StringEntity inputBody2 = new StringEntity("{\"errno\":\"102\",\"error\":\"HostHang\"}");
+        StringEntity inputBody2 = new StringEntity("{\"errorNo\":\"102\",\"errorName\":\"HostHang\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody2);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("主机悬空")) {
             System.out.println("Host hang error exist, test pass");
         } else
             Assert.fail("Host hang error does not exist, test fail");
-        StringEntity inputBody3 = new StringEntity("{\"errno\":\"103\",\"error\":\"WheelAbnormal\"}");
+        StringEntity inputBody3 = new StringEntity("{\"errorNo\":\"103\",\"errorName\":\"WheelAbnormal\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody3);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("驱动轮异常")) {
             System.out.println("Wheel abnormal error exist, test pass");
         } else
             Assert.fail("Wheel abnormal error does not exist, test fail");
-        StringEntity inputBody4 = new StringEntity("{\"errno\":\"104\",\"error\":\"DownSensorAbnormal\"}");
+        StringEntity inputBody4 = new StringEntity("{\"errorNo\":\"104\",\"errorName\":\"DownSensorAbnormal\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody4);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("下视组件异常")) {
             System.out.println("Down sensor abnormal error exist, test pass");
         } else
             Assert.fail("Down sensor abnormal error does not exist, test fail");
-        StringEntity inputBody5 = new StringEntity("{\"errno\":\"105\",\"error\":\"Stuck\"}");
+        StringEntity inputBody5 = new StringEntity("{\"errorNo\":\"105\",\"errorName\":\"Stuck\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody5);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("卡住")) {
             System.out.println("Deebot stuck error exist, test pass");
         } else
             Assert.fail("Deebot stuck error does not exist, test fail");
-        StringEntity inputBody6 = new StringEntity("{\"errno\":\"106\",\"error\":\"SideBrushExhausted\"}");
+        StringEntity inputBody6 = new StringEntity("{\"errorNo\":\"106\",\"errorName\":\"SideBrushExhausted\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody6);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷到期")) {
             System.out.println("Side brush exhausted error exist, test pass");
         } else
             Assert.fail("Side brush exhausted error does not exist, test fail");
-        StringEntity inputBody7 = new StringEntity("{\"errno\":\"107\",\"error\":\"DustCaseHeapExhausted\"}");
+        StringEntity inputBody7 = new StringEntity("{\"errorNo\":\"107\",\"errorName\":\"DustCaseHeapExhausted\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody7);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒到期")) {
             System.out.println("Dust case heap exhausted error exist, test pass");
         } else
             Assert.fail("Dust case heap exhausted error does not exist, test fail");
-        StringEntity inputBody8 = new StringEntity("{\"errno\":\"108\",\"error\":\"SideAbnormal\"}");
+        StringEntity inputBody8 = new StringEntity("{\"errorNo\":\"108\",\"errorName\":\"SideAbnormal\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody8);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("边刷异常")) {
             System.out.println("Side brush abnormal error exist, test pass");
         } else
             Assert.fail("Side brush abnormal  error does not exist, test fail");
-        StringEntity inputBody9 = new StringEntity("{\"errno\":\"109\",\"error\":\"RollAbnormal\"}");
+        StringEntity inputBody9 = new StringEntity("{\"errorNo\":\"109\",\"errorName\":\"RollAbnormal\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody9);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("滚刷异常")) {
             System.out.println("Roll brush abnormal error exist, test pass");
         } else
             Assert.fail("Roll brush abnormal error does not exist, test fail");
-        StringEntity inputBody10 = new StringEntity("{\"errno\":\"110\",\"error\":\"NoDustBox\"}");
+        StringEntity inputBody10 = new StringEntity("{\"errorNo\":\"110\",\"errorName\":\"NoDustBox\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody10);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("尘盒未安装")) {
             System.out.println("No dust box error exist, test pass");
         } else
             Assert.fail("No dust box error does not exist, test fail");
-        StringEntity inputBody11 = new StringEntity("{\"errno\":\"111\",\"error\":\"BumpAbnormal\"}");
+        StringEntity inputBody11 = new StringEntity("{\"errorNo\":\"111\",\"errorName\":\"BumpAbnormal\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody11);
         Thread.sleep(2000);
         if (elementExist(mobilePage.errorPanel) && mobilePage.errorPanel.getText().equals("撞板异常")) {
