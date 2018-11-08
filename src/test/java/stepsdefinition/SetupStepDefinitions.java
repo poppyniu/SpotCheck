@@ -1,6 +1,5 @@
 package stepsdefinition;
 
-import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import net.thucydides.core.annotations.Steps;
@@ -18,9 +17,9 @@ public class SetupStepDefinitions {
         setupSteps.startSimulator(type);
     }
 
-    @And("^Set up testing environment on (.*)$")
-    public void set_up_testing_environment_on_android(String platfrom) throws Throwable {
-        setupSteps.setUp(platfrom);
+    @Given("^Set up testing environment on (.*) for deebot (.*)$")
+    public void set_up_testing_environment_on_android(String platfrom,String deebotType) throws Throwable {
+        setupSteps.setUp(platfrom,deebotType);
     }
 
     @Then("^Tear down for mobile driver$")
