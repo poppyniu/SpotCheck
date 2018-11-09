@@ -77,8 +77,8 @@ public class Setup {
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("platformVersion", "6.0.0");
             capabilities.setCapability("udid", "84B7N15A20002666");
-            capabilities.setCapability("udid", "192.168.105.101:5555");
-            //capabilities.setCapability("app", app.getAbsolutePath());
+            //capabilities.setCapability("udid", "192.168.105.101:5555");
+            capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage","com.eco.global.app");
             //capabilities.setCapability("appActivity","com.eco.main.activity.EcoMainActivity");
             capabilities.setCapability("unicodeKeyboard", "True");
