@@ -62,8 +62,9 @@ public class Setup {
             //capabilities.setCapability("deviceName", "192.168.105.101:5555");
             capabilities.setCapability("deviceName", "Nexus 6");
             capabilities.setCapability("platformName", "Android");
-            capabilities.setCapability("platformVersion", "6.0.0");
-            capabilities.setCapability("udid", "84B7N15A20002666");
+            capabilities.setCapability("platformVersion", "5.0.2");//6.0.1
+//            capabilities.setCapability("udid", "MZROUGFIJZ8POBY9");//MZROUGFIJZ8POBY9 84B7N15A20002666
+            capabilities.setCapability("udid", "127.0.0.1:62001");
 //            capabilities.setCapability("udid", "192.168.105.101:5555");
             capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage","com.eco.global.app");

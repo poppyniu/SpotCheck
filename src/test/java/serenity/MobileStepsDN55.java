@@ -69,7 +69,7 @@ public class MobileStepsDN55 {
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
             }
-            mobilePage.strongInCleanPowerPage.click();
+            mobilePage.InCleanPowerList.get(1).click();
             mobilePage.saveBtnInCleanPowerPage.click();
             if (platform.equals("ios")) {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
@@ -88,7 +88,7 @@ public class MobileStepsDN55 {
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
             }
-            mobilePage.standardInCleanPowerPage.click();
+            mobilePage.InCleanPowerList.get(0).click();
             mobilePage.saveBtnInCleanPowerPage.click();
             if (platform.equals("ios")) {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
@@ -111,7 +111,7 @@ public class MobileStepsDN55 {
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
         }
-        mobilePage.gTextView.click();
+        mobilePage.TheFloorWaterList.get(2).click();
         mobilePage.saveBtnInMopTheFloorWater.click();
         if (platform.equals("ios")) {
             CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);

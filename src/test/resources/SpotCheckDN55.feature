@@ -10,8 +10,9 @@ Feature: Spot check automation for DR930
     And Open app and click into do clean job on <platform>
     And Open app and click into do more job on <platform>
     And Open app and click into error page translate job on <platform>
-    And Tear down for mobile driver
-    Then Tear down for simulator
+#    And Tear down for mobile driver
+#    Then Tear down for simulator
     Examples:
       | platform | country | name        | password | type  |
       | android  | 中国      | 13402516615 | 12345678 | dn55 |
+#      | ios  | 中国      | 13402516615 | 12345678 | dn55 |
