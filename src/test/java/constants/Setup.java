@@ -27,6 +27,19 @@ public class Setup {
                 Assert.fail("Start DR930 get error, test fail!");
         } else if (type.equals("dw700")) {
             StringEntity inputBody = new StringEntity(DeviceUtility.DW700);
+            String returnStr = JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+            if (returnStr.equals("OK") || returnStr.equals("virtual device is already online")) {
+                System.out.println("Start DW700 succeed, test pass!");
+            } else
+                Assert.fail("Start DW700 get error, test fail!");
+        }
+        else if (type.equals("dn39")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DN39);
+            String returnStr = JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+            if (returnStr.equals("OK") || returnStr.equals("virtual device is already online")) {
+                System.out.println("Start DN39 succeed, test pass!");
+            } else
+                Assert.fail("Start DN39 get error, test fail!");
             JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
         }else if (type.equals("dn55")) {
             StringEntity inputBody = new StringEntity(DeviceUtility.DN55);
@@ -64,8 +77,8 @@ public class Setup {
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("platformVersion", "6.0.0");
             capabilities.setCapability("udid", "84B7N15A20002666");
-//            capabilities.setCapability("udid", "192.168.105.101:5555");
-            capabilities.setCapability("app", app.getAbsolutePath());
+            capabilities.setCapability("udid", "192.168.105.101:5555");
+            //capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage","com.eco.global.app");
             //capabilities.setCapability("appActivity","com.eco.main.activity.EcoMainActivity");
             capabilities.setCapability("unicodeKeyboard", "True");

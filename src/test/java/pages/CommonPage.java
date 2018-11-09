@@ -42,6 +42,12 @@ public class CommonPage extends PageObject {
         }
     }
 
+    public static String getElementStrByText(String text){
+        String elementStr = "new UiScrollable(new UiSelector().scrollable(true).instance(0))." + "scrollIntoView(new UiSelector().textContains(" + "\"" + text + "\"" + ").instance(0))";
+        return elementStr;
+    }
+
+
     public boolean elementExist(WebElement element) throws Exception {
         boolean elementExist = element.isDisplayed();
         try {
