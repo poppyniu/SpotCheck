@@ -31,11 +31,12 @@ public class MobileStepsDN55 {
     public void open_dn55(String platform) throws Exception {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDN55.class);
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+            CommonPage.waitForVisible(appiumDriver, ("//*[@name=\"国际Dn55\"]"), 60, platform);
+            CommonPage.swipeToDirection(appiumDriver, "up");
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/robot_status"), 60, platform);
-            Thread.sleep(5000);
         }
+        Thread.sleep(5000);
         mobilePage.dn55Icon.get(0).click();
         System.out.println("Open deebot main page succeed, test pass");
 
@@ -45,15 +46,18 @@ public class MobileStepsDN55 {
     public void doCleanJob(String platform) throws Exception {
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver, 10, SECONDS), MobilePageDN55.class);
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+            CommonPage.waitForVisible(appiumDriver, ("//*[@name=\"清扫建图注意事项\"]"), 60, platform);
+            Thread.sleep(2000);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/iv_idle_clean"), 60, platform);
         }
-
+        if (mobilePage.cleanPageMoreBtn.isDisplayed()) {
+            System.out.println("Open deebot main page succeed, test pass");
+        }
         //进入更多页面
-        mobilePage.HostMore.click();
+        mobilePage.cleanPageMoreBtn.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
         }
@@ -61,7 +65,7 @@ public class MobileStepsDN55 {
 
     @Step
     public void cleanPower(String platform) throws Exception {
-        if (elementExist(mobilePage.moreDisplayList.get(0)) && mobilePage.moreDisplayList.get(0).getText().contains("标准")) {
+        if (elementExist(mobilePage.cleanTheSuctionDisplay) && mobilePage.cleanTheSuctionDisplay.getText().contains("标准")) {
             mobilePage.cleanTheSuction.click();
             // 等待主机文字标准出现
             if (platform.equals("ios")) {
@@ -69,17 +73,18 @@ public class MobileStepsDN55 {
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
             }
-            mobilePage.InCleanPowerList.get(1).click();
+            mobilePage.strongInCleanPowerPage.click();
             mobilePage.saveBtnInCleanPowerPage.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(0)) && mobilePage.moreDisplayList.get(0).getText().contains("强劲")) {
+            Thread.sleep(2000);
+            if (elementExist(mobilePage.cleanTheSuctionDisplay) && mobilePage.cleanTheSuctionDisplay.getText().contains("强劲")) {
                 System.out.println("Get clean power info succeed, test pass");
-            } else
-                Assert.fail("Get clean power get error, test fail");
+            } else{
+                Assert.fail("Get clean power get error, test fail");}
         }else{
             mobilePage.cleanTheSuction.click();
             // 等待主机文字标准出现
@@ -88,17 +93,18 @@ public class MobileStepsDN55 {
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
             }
-            mobilePage.InCleanPowerList.get(0).click();
+            mobilePage.standardInCleanPowerPage.click();
             mobilePage.saveBtnInCleanPowerPage.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(0)) && mobilePage.moreDisplayList.get(0).getText().contains("标准")) {
+            Thread.sleep(2000);
+            if (elementExist(mobilePage.cleanTheSuctionDisplay) && mobilePage.cleanTheSuctionDisplay.getText().contains("标准")) {
                 System.out.println("Get clean power info succeed, test pass");
-            } else
-                Assert.fail("Get clean power get error, test fail");
+            } else{
+                Assert.fail("Get clean power get error, test fail");}
         }
     }
 
@@ -107,18 +113,18 @@ public class MobileStepsDN55 {
         mobilePage.mopTheFloorWater.click();
         // 等待主机文字标准出现
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[1]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_left"), 60, platform);
         }
-        mobilePage.TheFloorWaterList.get(2).click();
+        mobilePage.gTextView.click();
         mobilePage.saveBtnInMopTheFloorWater.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[2]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
         }
-        if (elementExist(mobilePage.moreDisplayList.get(1)) && mobilePage.moreDisplayList.get(1).getText().contains("高")) {
+        if (elementExist(mobilePage.mopTheFloorWaterDisplay) && mobilePage.mopTheFloorWaterDisplay.getText().contains("高")) {
             System.out.println("Get mop the floor water info succeed, test pass");
         } else
             Assert.fail("Get mop the floor water get error, test fail");
@@ -127,7 +133,7 @@ public class MobileStepsDN55 {
 
     @Step
     public void carpetPressurization(String platform) throws Exception {
-        if (elementExist(mobilePage.moreDisplayList.get(2)) && mobilePage.moreDisplayList.get(2).getText().contains("关闭")) {
+        if (elementExist(mobilePage.carpetPressurizationDisplay) && mobilePage.carpetPressurizationDisplay.getText().contains("关闭")) {
             mobilePage.carpetPressurization.click();
             // 等待主机地毯增压页面出现
             if (platform.equals("ios")) {
@@ -139,11 +145,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInPowerContinueToSweep.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(2)) && mobilePage.moreDisplayList.get(2).getText().contains("开启")) {
+            if (elementExist(mobilePage.carpetPressurizationDisplay) && mobilePage.carpetPressurizationDisplay.getText().contains("开启")) {
                 System.out.println("Get carpet pressurization info succeed, test pass");
             } else
                 Assert.fail("Get carpet pressurization get error, test fail");
@@ -159,11 +165,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInPowerContinueToSweep.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(2)) && mobilePage.moreDisplayList.get(2).getText().contains("关闭")) {
+            if (elementExist(mobilePage.carpetPressurizationDisplay) && mobilePage.carpetPressurizationDisplay.getText().contains("关闭")) {
                 System.out.println("Get carpet pressurization info succeed, test pass");
             } else
                 Assert.fail("Get carpet pressurization get error, test fail");
@@ -174,7 +180,7 @@ public class MobileStepsDN55 {
 
     @Step
     public void breakpointContinueToSweep(String platform) throws Exception {
-        if (elementExist(mobilePage.moreDisplayList.get(3)) && mobilePage.moreDisplayList.get(3).getText().contains("开启")) {
+        if (elementExist(mobilePage.breakpointContinueToSweepDisplay) && mobilePage.breakpointContinueToSweepDisplay.getText().contains("开启")) {
 
             mobilePage.breakpointContinueToSweep.click();
             // 等待页面出现 breakpointContinueToSweepDisplay
@@ -187,11 +193,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInPowerContinueToSweep.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(3)) && mobilePage.moreDisplayList.get(3).getText().contains("关闭")) {
+            if (elementExist(mobilePage.breakpointContinueToSweepDisplay) && mobilePage.breakpointContinueToSweepDisplay.getText().contains("关闭")) {
                 System.out.println("Get break point continue to sweep info succeed, test pass");
             } else
                 Assert.fail("Get break point continue to sweep get error, test fail");
@@ -209,11 +215,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInPowerContinueToSweep.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(3)) && mobilePage.moreDisplayList.get(3).getText().contains("开启")) {
+            if (elementExist(mobilePage.breakpointContinueToSweepDisplay) && mobilePage.breakpointContinueToSweepDisplay.getText().contains("开启")) {
                 System.out.println("Get break point continue to sweep info succeed, test pass");
             } else
                 Assert.fail("Get break point continue to sweep get error, test fail");
@@ -224,7 +230,7 @@ public class MobileStepsDN55 {
 
     @Step
     public void DNDmode(String platform) throws Exception {
-        if (elementExist(mobilePage.moreDisplayList.get(4)) && mobilePage.moreDisplayList.get(4).getText().contains("开启")) {
+        if (elementExist(mobilePage.DNDmodeDisplay) && mobilePage.DNDmodeDisplay.getText().contains("开启")) {
             mobilePage.DNDmode.click();
             // 等待页面出现
             if (platform.equals("ios")) {
@@ -236,11 +242,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInDNDMode.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(4)) && mobilePage.moreDisplayList.get(4).getText().contains("关闭")) {
+            if (elementExist(mobilePage.DNDmodeDisplay) && mobilePage.DNDmodeDisplay.getText().contains("关闭")) {
                 System.out.println("Get DNDmode info succeed, test pass");
             } else
                 Assert.fail("Get DNDmode get error, test fail");
@@ -258,11 +264,11 @@ public class MobileStepsDN55 {
             Thread.sleep(1000);
             mobilePage.backBtnInDNDMode.click();
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[5]/XCUIElementTypeStaticText[2]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
             } else {
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
             }
-            if (elementExist(mobilePage.moreDisplayList.get(4)) && mobilePage.moreDisplayList.get(4).getText().contains("开启")) {
+            if (elementExist(mobilePage.DNDmodeDisplay) && mobilePage.DNDmodeDisplay.getText().contains("开启")) {
                 System.out.println("Get DNDmode info succeed, test pass");
             } else
                 Assert.fail("Get DNDmode get error, test fail");
@@ -277,7 +283,7 @@ public class MobileStepsDN55 {
         mobilePage.CleanTheAppointment.click();
         // 等待主机清扫预约主页面的预约显示
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[3]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeNavigationBar[1]/XCUIElementTypeButton[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_appoint_empty_hint"), 60, platform);
         }
@@ -295,17 +301,17 @@ public class MobileStepsDN55 {
         mobilePage.backBtnInRepetitionFrequency.click();
         Thread.sleep(2000);
         mobilePage.saveBtnInEditCleaningTheAppointment.click();
-
+        Thread.sleep(2000);
 // 等待主机清扫预约主页面的预约显示
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[3]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_week"), 60, platform);
         }
         if (mobilePage.tv_week.getText().contains("每周日")) {
             System.out.println("Add new clean schedule succeed, test pass");
-        } else
-            Assert.fail("Add new clean schedule get error, test fail");
+        } else{
+            Assert.fail("Add new clean schedule get error, test fail");}
 
         //edit schedule
         mobilePage.tv_appoint_type.click();
@@ -320,7 +326,7 @@ public class MobileStepsDN55 {
         Thread.sleep(2000);
         // 等待主机清扫预约主页面的预约显示
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[3]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_week"), 60, platform);
         }
@@ -329,20 +335,21 @@ public class MobileStepsDN55 {
         } else
             Assert.fail("Edit new clean schedule get error, test fail");
 
-        //delete schedule
-        mobilePage.tv_week.click();
-        Thread.sleep(2000);
-        mobilePage.bjscyyTextView.click();
-        // 等待主机清扫预约主页面的预约显示
-        if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[3]"), 60, platform);
-        } else {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_appoint_empty_hint"), 60, platform);
-        }
-        if (elementExist(mobilePage.noCleaningTheAppointment) && mobilePage.noCleaningTheAppointment.getText().equals("无清扫预约")) {
-            System.out.println("Delete clean schedule succeed, test pass");
-        } else
-            Assert.fail("Delete clean schedule get error, test fail");
+//        //delete schedule
+//        mobilePage.tv_week.click();
+//        Thread.sleep(2000);
+//        mobilePage.bjscyyTextView.click();
+//        Thread.sleep(5000);
+//        // 等待主机清扫预约主页面的预约显示
+//        if (platform.equals("ios")) {
+//            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]"), 60, platform);
+//        } else {
+//            CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_appoint_empty_hint"), 60, platform);
+//        }
+//        if (elementExist(mobilePage.noCleaningTheAppointment) && mobilePage.noCleaningTheAppointment.getText().equals("无清扫预约")) {
+//            System.out.println("Delete clean schedule succeed, test pass");
+//        } else
+//            Assert.fail("Delete clean schedule get error, test fail");
         mobilePage.backBtnInCleaningTheAppointment.click();
     }
 
@@ -356,7 +363,7 @@ public class MobileStepsDN55 {
         mobilePage.CleanTheLog.click();
         // 等待主机清扫日志累计时间
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_cumulative_area_name"), 60, platform);
         }
@@ -372,30 +379,30 @@ public class MobileStepsDN55 {
         mobilePage.ConsumableTiming.click();
         // 等待主机耗材计时页面
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeButton[1]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_side_brush"), 60, platform);
         }
         mobilePage.tv_reset_side_brush.click();
         mobilePage.tv_positive.click();
-
-        if (elementExist(mobilePage.tv_side_brush_percent) && mobilePage.tv_side_brush_percent.getText().contains("100")) {
+        Thread.sleep(5000);
+        if (elementExist(mobilePage.tv_side_brush_percent) && mobilePage.tv_side_brush_percent.getText().contains("100%")) {
             System.out.println("Get reset side brush detail info succeed, test pass");
         } else
             Assert.fail("Get reset side brush get error, test fail");
 
         mobilePage.tv_reset_roll_brush.click();
         mobilePage.tv_positive.click();
-
-        if (elementExist(mobilePage.tv_roll_brush_percent) && mobilePage.tv_roll_brush_percent.getText().contains("100")) {
+        Thread.sleep(5000);
+        if (elementExist(mobilePage.tv_roll_brush_percent) && mobilePage.tv_roll_brush_percent.getText().contains("100%")) {
             System.out.println("Get reset roll brush detail info succeed, test pass");
         } else
             Assert.fail("Get reset roll brush get error, test fail");
 
         mobilePage.tv_reset_hepa.click();
         mobilePage.tv_positive.click();
-
-        if (elementExist(mobilePage.tv_hepa_percent) && mobilePage.tv_hepa_percent.getText().contains("100")) {
+        Thread.sleep(5000);
+        if (elementExist(mobilePage.tv_hepa_percent) && mobilePage.tv_hepa_percent.getText().contains("100%")) {
             System.out.println("Get reset hepa detail info succeed, test pass");
         } else
             Assert.fail("Get reset hepa get error, test fail");
@@ -405,19 +412,19 @@ public class MobileStepsDN55 {
 
     @Step
     public void debootVoice(String platform) throws Exception {
-        if (elementExist(mobilePage.moreDisplayList.get(9)) && mobilePage.moreDisplayList.get(9).getText().contains("开启")) {
+        if (elementExist(mobilePage.debootVoiceDisplay) && mobilePage.debootVoiceDisplay.getText().contains("开启")) {
             mobilePage.debootVoice.click();
             // 等待页面出现
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeSwitch[1]"), 60, platform);
             }else{
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/toggle_btn"), 60, platform);
             }
-            mobilePage.slideBtn.click();
+            mobilePage.slideBtn9.click();
             Thread.sleep(3000);
             mobilePage.backBtnInPowerContinueToSweep.click();
 
-            if (elementExist(mobilePage.moreDisplayList.get(9)) && mobilePage.moreDisplayList.get(9).getText().contains("关闭")) {
+            if (elementExist(mobilePage.debootVoiceDisplay) && mobilePage.debootVoiceDisplay.getText().contains("关闭")) {
                 System.out.println("Get deboot voice info succeed, test pass");
             } else
                 Assert.fail("Get deboot voice get error, test fail");
@@ -427,15 +434,15 @@ public class MobileStepsDN55 {
             mobilePage.debootVoice.click();
             // 等待页面出现
             if (platform.equals("ios")) {
-                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"), 60, platform);
+                CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeSwitch[1]"), 60, platform);
             }else{
                 CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/toggle_btn"), 60, platform);
             }
-            mobilePage.slideBtn.click();
+            mobilePage.slideBtn9.click();
             Thread.sleep(3000);
             mobilePage.backBtnInPowerContinueToSweep.click();
 
-            if (elementExist(mobilePage.moreDisplayList.get(9)) && mobilePage.moreDisplayList.get(9).getText().contains("开启")) {
+            if (elementExist(mobilePage.debootVoiceDisplay) && mobilePage.debootVoiceDisplay.getText().contains("开启")) {
                 System.out.println("Get deboot voice info succeed, test pass");
             } else
                 Assert.fail("Get deboot voice get error, test fail");
@@ -452,11 +459,11 @@ public class MobileStepsDN55 {
         mobilePage.saveInRenamePage.click();
         Thread.sleep(2000);
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[11]/XCUIElementTypeStaticText[2]"), 60, platform);
         }else{
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/msg"), 60, platform);
         }
-        if (elementExist(mobilePage.moreDisplayList.get(10)) && mobilePage.moreDisplayList.get(10).getText().contains("国际Dn55")) {
+        if (elementExist(mobilePage.renameDisplay) && mobilePage.renameDisplay.getText().contains("国际Dn55")) {
             System.out.println("Get deboot rename info succeed, test pass");
         } else
             Assert.fail("Get deboot rename get error, test fail");
@@ -467,7 +474,7 @@ public class MobileStepsDN55 {
     public void usingHelp(String platform) throws Exception {
         mobilePage.usingHelp.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeCollectionView[1]/XCUIElementTypeCell[2]"), 60, platform);
         }else{
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_tab_title"), 60, platform);
         }
@@ -481,14 +488,14 @@ public class MobileStepsDN55 {
         mobilePage.debootMessage.click();
         // 等待 地宝SN号编码出现
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeStaticText[@name='" + deeBot + "']"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_Right"), 60, platform);
         }
 
-        mobilePage.debeetMessageTitleContentGuide1.get(0).click();
+        mobilePage.debeetMessageTitleContentGuide1.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/update_status"), 60, platform);
         }
@@ -497,9 +504,9 @@ public class MobileStepsDN55 {
         } else
             Assert.fail("Get FW Version Guide Content get error, test fail");
         mobilePage.backBtnInDebeetMessage.click();
-        mobilePage.debeetMessageTitleContentGuide1.get(2).click();
+        mobilePage.debeetMessageTitleContentGuide3.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[2]"), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_Right"), 60, platform);
         }
@@ -507,15 +514,15 @@ public class MobileStepsDN55 {
 //            System.out.println("Get job log detail info succeed, test pass");
 //        } else
 //            Assert.fail("Get job log get error, test fail");
-        if (elementExist(mobilePage.internetMessageTitleContentGuideList1.get(0)) && mobilePage.internetMessageTitleContentGuideList1.get(0).getText().contains("rd4_iot_ww_testpub")) {
+        if (elementExist(mobilePage.internetMessageTitleContentGuideList1) && mobilePage.internetMessageTitleContentGuideList1.getText().contains("rd4_iot_ww_testpub")) {
             System.out.println("Get job log detail info succeed, test pass");
         } else
             Assert.fail("Get job log get error, test fail");
-        if (elementExist(mobilePage.internetMessageTitleContentGuideList1.get(1)) && mobilePage.internetMessageTitleContentGuideList1.get(1).getText().contains("中")) {
+        if (elementExist(mobilePage.internetMessageTitleContentGuideList21) && mobilePage.internetMessageTitleContentGuideList21.getText().contains("中")) {
             System.out.println("Get job log detail info succeed, test pass");
         } else
             Assert.fail("Get job log get error, test fail");
-        if (elementExist(mobilePage.internetMessageTitleContentGuideList1.get(2)) && mobilePage.internetMessageTitleContentGuideList1.get(2).getText().contains("192.168.0.30")) {
+        if (elementExist(mobilePage.internetMessageTitleContentGuideList31) && mobilePage.internetMessageTitleContentGuideList31.getText().contains("192.168.0.30")) {
             System.out.println("Get job log detail info succeed, test pass");
         } else
             Assert.fail("Get job log get error, test fail");
@@ -538,7 +545,7 @@ public class MobileStepsDN55 {
         //返回到主机清扫页面
         mobilePage.backBtnInInternetMessage.click();
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[2]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/iv_idle_clean"), 60, platform);
         }
@@ -553,7 +560,7 @@ public class MobileStepsDN55 {
         StringEntity inputBody2 = new StringEntity("{\"errorNo\":\"102\"}");
         JsonUtility.postJsonContent("http://localhost:3000/error", inputBody2);
         if (platform.equals("ios")) {
-            CommonPage.waitMobileElementVisible(appiumDriver, (""), 60, platform);
+            CommonPage.waitMobileElementVisible(appiumDriver, ("//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeAlert[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]"), 60, platform);
         } else {
             CommonPage.waitMobileElementVisible(appiumDriver, ("com.eco.global.app:id/tv_content"), 60, platform);
         }

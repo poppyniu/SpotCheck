@@ -1,4 +1,4 @@
-Feature: Spot check automation for DR930
+Feature: Spot check automation for DN55
 
   @SpotCheckDN55
   Scenario Outline: Spot check automation for DN55
@@ -14,5 +14,5 @@ Feature: Spot check automation for DR930
 #    Then Tear down for simulator
     Examples:
       | platform | country | name        | password | type  |
-      | android  | 中国      | 13402516615 | 12345678 | dn55 |
-#      | ios  | 中国      | 13402516615 | 12345678 | dn55 |
+#      | android  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |
+      | ios  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |

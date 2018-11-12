@@ -54,16 +54,16 @@ public class Setup {
 
     public AppiumDriver setUp(String platform,String deebotType) throws Exception {
         if (platform.equals("ios")) {
+            File classpathRoot = new File(System.getProperty("user.dir"));
+            File appDir = new File(classpathRoot, "file");
+            File app = new File(appDir, deebotType+".ipa");
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("deviceName", "iPhone");
             capabilities.setCapability("platformName", "iOS");
             capabilities.setCapability("platformVersion", "11.1.1");
-            //capabilities.setCapability("bundleId", "com.eco.global.app");
-            capabilities.setCapability("bundleId", "com.vivien.demo");
+            capabilities.setCapability("bundleId", "com.eco.global.app");
             capabilities.setCapability("udid", "1291e24e38090c86966e07b5bd6299c74b80be31");
-            //capabilities.setCapability("udid", "741f52d3db805f3ea97a93781ece67b311c8c324");
-            //capabilities.setCapability("app", "/Users/ecovacsqa/Desktop/GlobalAppTranslate/file/GlobalApp.ipa");
-            capabilities.setCapability("app", "/Users/ecovacsqa/Desktop/GlobalAppTranslate/file/"+deebotType+".ipa");
+            capabilities.setCapability("app", app.getAbsolutePath());
             capabilities.setCapability("automationName", "xcuitest");
             capabilities.setCapability("autoAcceptAlerts", "True");
             capabilities.setCapability("noSign", "True");
