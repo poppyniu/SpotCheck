@@ -21,15 +21,15 @@ public class MobileStepDefinitionsDN55 {
     }
     @And("^Open app and click into do more job on (.*)")
     public void open_app_and_click_into_more_on_android(String platform) throws Throwable {
-//        mobileStepsDN55.cleanPower(platform);
-//        mobileStepsDN55.mopTheFloorWater(platform);
-//        mobileStepsDN55.carpetPressurization(platform);
-//        mobileStepsDN55.breakpointContinueToSweep(platform);
-//        mobileStepsDN55.DNDmode(platform);
-//        mobileStepsDN55.addModifyDeleteSchedule(platform);
-//        mobileStepsDN55.cleanMap(platform);
-//        mobileStepsDN55.jobLog(platform);
-//        mobileStepsDN55.resetConsumables(platform);
+        mobileStepsDN55.cleanPower(platform);
+        mobileStepsDN55.mopTheFloorWater(platform);
+        mobileStepsDN55.carpetPressurization(platform);
+        mobileStepsDN55.breakpointContinueToSweep(platform);
+        mobileStepsDN55.DNDmode(platform);
+        mobileStepsDN55.addModifyDeleteSchedule(platform);
+        mobileStepsDN55.cleanMap(platform);
+        mobileStepsDN55.jobLog(platform);
+        mobileStepsDN55.resetConsumables(platform);
         mobileStepsDN55.debootVoice(platform);
         mobileStepsDN55.debootRename(platform);
         mobileStepsDN55.usingHelp(platform);
