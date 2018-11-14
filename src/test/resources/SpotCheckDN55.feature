@@ -14,5 +14,5 @@ Feature: Spot check automation for DN55
 #    Then Tear down for simulator
     Examples:
       | platform | country | name        | password | type  |
-#      | android  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |
-      | ios  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |
+      | android  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |
+#      | ios  | 中国      | 825794516@qq.com | zxw15259562596 | dn55 |

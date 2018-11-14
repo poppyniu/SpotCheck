@@ -22,4 +22,8 @@ public class DeviceUtility {
             "\"app_user\":\"825794516@qq.com\"," +
             "\"device_name\":\"DN55\"" +
             "}";
+    public static String DN5x = "{" +
+            "\"app_user\":\"m19900001100\"," +
+            "\"device_name\":\"DN5x\"" +
+            "}";
 }

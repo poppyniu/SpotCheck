@@ -49,6 +49,14 @@ public class Setup {
             } else
                 Assert.fail("Start DN55 get error, test fail!");
             JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+        }else if (type.equals("dn5x")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DN5x);
+            String returnStr = JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+            if (returnStr.equals("OK") || returnStr.equals("virtual device is already online")) {
+                System.out.println("Start DN5x succeed, test pass!");
+            } else
+                Assert.fail("Start DN5x get error, test fail!");
+            JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
         }
     }
 
@@ -81,6 +89,7 @@ public class Setup {
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("platformVersion", "6.0.0");
             capabilities.setCapability("udid", "84B7N15A20002666");
+//            capabilities.setCapability("udid","127.0.0.1:62001");
             capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage","com.eco.global.app");
             //capabilities.setCapability("appActivity","com.eco.main.activity.EcoMainActivity");
