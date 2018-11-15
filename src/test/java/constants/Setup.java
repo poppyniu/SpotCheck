@@ -57,6 +57,14 @@ public class Setup {
             } else
                 Assert.fail("Start DN5x get error, test fail!");
             JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+        }else if (type.equals("dn33")) {
+            StringEntity inputBody = new StringEntity(DeviceUtility.DN33);
+            String returnStr = JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
+            if (returnStr.equals("OK") || returnStr.equals("virtual device is already online")) {
+                System.out.println("Start DN33 succeed, test pass!");
+            } else
+                Assert.fail("Start DN33 get error, test fail!");
+            JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
         }
     }
 

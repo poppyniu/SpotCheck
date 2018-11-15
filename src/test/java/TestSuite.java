@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         format = {"pretty", "html:target/html/"},
         features = {"src/test/resources" },
-       tags = {"@SpotCheckDN55"}
+        tags = {"@DN33"}
 )
 public class TestSuite {
 }

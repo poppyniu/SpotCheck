@@ -18,12 +18,20 @@ public class DeviceUtility {
             "\"app_user\":\"m19900001100\"," +
             "\"device_name\":\"DN39\"" +
             "}";
+
     public static String DN55 = "{" +
             "\"app_user\":\"825794516@qq.com\"," +
             "\"device_name\":\"DN55\"" +
             "}";
+
     public static String DN5x = "{" +
             "\"app_user\":\"m19900001100\"," +
             "\"device_name\":\"DN5x\"" +
             "}";
+
+    public static String DN33 = "{" +
+            "\"app_user\":\"m19900001100\"," +
+            "\"device_name\":\"DN33\"" +
+            "}";
+
 }
