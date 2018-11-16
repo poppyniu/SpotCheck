@@ -42,6 +42,39 @@ public class MobilePageDN39 {
     @iOSFindBy(xpath = "//*[@name=\"com global more\"]")
     @AndroidFindBy(id = "com.eco.global.app:id/top_status_more")
     public MobileElement cleanPageMoreBtn;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[6]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_clean")
+    public MobileElement cleanPageCleanBtn ;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_clean")
+    public MobileElement cleanPageCleanBtn1 ;
+    @iOSFindBy(xpath ="//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/deebot_statues")
+    public MobileElement currentStatus ;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_clean_pause")
+    public  MobileElement pauseCleanBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_clean_stop_right")
+    public  MobileElement endCleanImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeSheet[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton[1]")
+    @AndroidFindBy(id="//poppy")
+    public  MobileElement finishCurrentWorkBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="//poppy")
+    public  MobileElement alertFinishCleanBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeOther[1]/XCUIElementTypeStaticText[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/rd_clean_type")
+    public  MobileElement cleanPageLog;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeButton[1]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_idle_gocharge")
+    public  MobileElement chargeImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    @AndroidFindBy(id="com.eco.global.app:id/iv_gocharge_stop")
+    public  MobileElement stopChargeImgBtn;
+    @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeButton[2]")
+    @AndroidFindBy(id="//poppytest")
+    public  MobileElement alertStopChargeBtn;
 
     //more page element
     @iOSFindBy(xpath = "//XCUIElementTypeApplication[1]/XCUIElementTypeWindow[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]/XCUIElementTypeTable[1]/XCUIElementTypeCell[1]/XCUIElementTypeStaticText[1]")

@@ -21,6 +21,16 @@ public class MobileStepDefinitionsDN39 {
         mobileStepsDN39.testErrorModule(platform);
     }
 
+    @And("^Test clean module for dn39 and check result on (.*)$")
+    public void test_clean_module_for_dn_and_check_result_on_ios(String platform) throws Throwable {
+        mobileStepsDN39.testCleanModule(platform);
+    }
+
+    @And("^Test charge module for dn39 and check result on (.*)$")
+    public void test_charge_module_for_dn_and_check_result_on_ios(String platform) throws Throwable {
+        mobileStepsDN39.testChargeModule(platform);
+    }
+
     @And("^Test senior mode module for dn39 and check result on (.*)$")
     public void test_senior_mode_module_for_dn_and_check_result_on_ios(String platform) throws Throwable {
         mobileStepsDN39.testSeniorModeModule(platform);
