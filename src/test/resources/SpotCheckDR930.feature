@@ -1,9 +1,9 @@
 Feature: Spot check automation for DR930
 
-  @930
+  @930 @android
   Scenario Outline: Spot check automation for DR930
     Given Start simulator for deebot <type>
-    And Set up testing environment on <platform> for deebot <type>
+    And Set up testing environment on <platform> for deebot <type> on <udid> on <port>
 #    And Choose <country> as login country on <platform>
 #    And Input <name> and <password> and click login button
     And Open app and click into deebot clean page on <platform>
@@ -26,6 +26,6 @@ Feature: Spot check automation for DR930
     And Tear down for mobile driver
     Then Tear down for simulator
     Examples:
-      | platform | country | name        | password | type  |
-#      | android  | 中国      | 13402516615 | 111111 | dr930 |
-      | ios  | 中国      | 13402516615 | 111111 | dr930 |
+      | platform | country | name        | password | type  | udid                 | port |
+      | android  | 中国      | 13402516615 | 111111   | dr930 | 192.168.105.101:5555 | 4723 |
+      | ios  | 中国      | 13402516615 | 111111 | dr930 |192.168.105.101:5555|1291e24e38090c86966e07b5bd6299c74b80be31\4723|

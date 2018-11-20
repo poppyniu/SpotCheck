@@ -24,7 +24,7 @@ public class Setup {
                 System.out.println("Start DR930 succeed, test pass!");
             }
             else
-                Assert.fail("Start DR930 get error, test fail!");
+                System.out.println("Start DR930 get error, test fail!");
         } else if (type.equals("dw700")) {
             StringEntity inputBody = new StringEntity(DeviceUtility.DW700);
             String returnStr = JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
@@ -39,7 +39,7 @@ public class Setup {
             if (returnStr.equals("OK") || returnStr.equals("virtual device is already online")) {
                 System.out.println("Start DN39 succeed, test pass!");
             } else
-                Assert.fail("Start DN39 get error, test fail!");
+                System.out.println("Start DN39 get error, test fail!");
             JsonUtility.postJsonContent("http://localhost:3000/startdevice", inputBody);
         }else if (type.equals("dn55")) {
             StringEntity inputBody = new StringEntity(DeviceUtility.DN55);
@@ -68,7 +68,7 @@ public class Setup {
         }
     }
 
-    public AppiumDriver setUp(String platform,String deebotType) throws Exception {
+    public AppiumDriver setUp(String platform,String deebotType,String udid,String port) throws Exception {
         if (platform.equals("ios")) {
             File classpathRoot = new File(System.getProperty("user.dir"));
             File appDir = new File(classpathRoot, "file");
@@ -96,7 +96,8 @@ public class Setup {
             capabilities.setCapability("deviceName", "Nexus 6");
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("platformVersion", "6.0.0");
-            capabilities.setCapability("udid", "84B7N15A20002666");
+//            capabilities.setCapability("udid", "84B7N15A20002666");
+            capabilities.setCapability("udid", udid);
 //            capabilities.setCapability("udid","127.0.0.1:62001");
             capabilities.setCapability("app", app.getAbsolutePath());
             //capabilities.setCapability("appPackage","com.eco.global.app");
@@ -107,7 +108,7 @@ public class Setup {
             capabilities.setCapability("newCommandTimeout", 600);
             //True每次运行不重新安装
             capabilities.setCapability("noReset", "True");
-            appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+            appiumDriver = new AndroidDriver(new URL("http://0.0.0.0:"+port+"/wd/hub"), capabilities);
             return appiumDriver;
         }
     }

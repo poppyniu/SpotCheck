@@ -17,9 +17,9 @@ public class SetupStepDefinitions {
         setupSteps.startSimulator(type);
     }
 
-    @Given("^Set up testing environment on (.*) for deebot (.*)$")
-    public void set_up_testing_environment_on_android(String platfrom,String deebotType) throws Throwable {
-        setupSteps.setUp(platfrom,deebotType);
+    @Given("^Set up testing environment on (.*) for deebot (.*) on (.*) on (.*)$")
+    public void set_up_testing_environment_on_android(String platfrom,String deebotType,String udid,String port) throws Throwable {
+        setupSteps.setUp(platfrom,deebotType,udid,port);
     }
 
     @Then("^Tear down for mobile driver$")

@@ -15,8 +15,8 @@ public class SetupSteps {
     }
 
     @Step
-    public void setUp(String platform,String deebotType) throws Exception {
-        setUp.setUp(platform,deebotType);
+    public void setUp(String platform,String deebotType,String udid,String port) throws Exception {
+        setUp.setUp(platform,deebotType,udid,port);
     }
 
     @Step
